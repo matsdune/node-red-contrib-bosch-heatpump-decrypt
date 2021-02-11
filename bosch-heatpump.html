@@ -1,0 +1,30 @@
+<script type="text/javascript">
+    RED.nodes.registerType('bosch-heatpump',{
+        category: 'config',
+        defaults: {
+            magic: {type:"text", value:"867845e97c4e29dce522b9a7d3a3e07b152bffadddbed7f5ffd842e9895ad1e4", required:true}
+        },
+        credentials: {
+            accessKey: {type:"text", value:"", required:true},
+            password: {type:"password", value:"", required:true}
+        },
+        label: function() {
+            return "bosch-heatpump-config";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="bosch-heatpump">
+    <div class="form-row">
+        <label for="node-config-input-accessKey"><i class="fa fa-tag"></i> Access Key</label>
+        <input type="text" id="node-config-input-accessKey" placeholder="Access Key">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-tag"></i> Password</label>
+        <input type="password" id="node-config-input-password">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-magic"><i class="fa fa-tag"></i> Magic</label>
+        <input type="text" id="node-config-input-magic">
+    </div>
+</script>
