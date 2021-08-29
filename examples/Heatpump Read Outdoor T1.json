@@ -1,0 +1,127 @@
+[
+    {
+        "id": "51674087.93932",
+        "type": "tab",
+        "label": "Read T1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9cbd8601.2b8378",
+        "type": "http request",
+        "z": "51674087.93932",
+        "name": "http GET request",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 270,
+        "y": 120,
+        "wires": [
+            [
+                "dc668f.cfde297"
+            ]
+        ]
+    },
+    {
+        "id": "dc668f.cfde297",
+        "type": "bosch-decrypt",
+        "z": "51674087.93932",
+        "name": "",
+        "heatpump": "62ac099e.37e3a8",
+        "x": 480,
+        "y": 120,
+        "wires": [
+            [
+                "b1d828d4.69a308"
+            ]
+        ]
+    },
+    {
+        "id": "b1d828d4.69a308",
+        "type": "json",
+        "z": "51674087.93932",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 650,
+        "y": 120,
+        "wires": [
+            [
+                "df1879af.011e68"
+            ]
+        ]
+    },
+    {
+        "id": "b9b04e11.af017",
+        "type": "inject",
+        "z": "51674087.93932",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "headers",
+                "v": "{\"User-Agent\": \"TeleHeater\",\"Seq-No\": 1}",
+                "vt": "json"
+            },
+            {
+                "p": "url",
+                "v": "http://192.168.1.100/system/sensors/temperatures/outdoor_t1",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "9cbd8601.2b8378"
+            ]
+        ]
+    },
+    {
+        "id": "df1879af.011e68",
+        "type": "debug",
+        "z": "51674087.93932",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5a999eed.b705",
+        "type": "comment",
+        "z": "51674087.93932",
+        "name": "Read t1 example description",
+        "info": "# Simple read example from the heatpump\n1. Sending a HTTP GET request and setting the headers, payload and url. Change the url IP to suit your need.\n2. The bosch-decrypt node decrypts the response from the heatpump. The node requires the bosh-heatpump configuration node to be set up correctly with accessCode and password.\n3. JSON Parsing the response data",
+        "x": 140,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "62ac099e.37e3a8",
+        "type": "bosch-heatpump",
+        "magic": "867845e97c4e29dce522b9a7d3a3e07b152bffadddbed7f5ffd842e9895ad1e4"
+    }
+]
